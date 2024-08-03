@@ -6,10 +6,9 @@ All To-Dos
 
 {% block body %}
 <ul>
-    <li>TO-do Item 1</li>
-    <li>TO-do Item 2</li>
-    <li>TO-do Item 3</li>
-    <li>TO-do Item 4</li>
+   {% for todo in all_todo %}
+    <li> {{todo.text}} </li>
+   {% endfor %}
 </ul>
 {% endblock body %}
 
