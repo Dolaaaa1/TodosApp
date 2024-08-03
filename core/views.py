@@ -1,4 +1,5 @@
-from django.shortcuts import render ,HttpResponse
+from django.shortcuts import render ,HttpResponse ,redirect
+from .forms import NewTodoForm
 
 # Create your views here.
 
@@ -9,4 +10,12 @@ def all_todos(request):
     return render(request,'all_todoes.html')
 
 def add_todos(request):
-    return render(request,'new_todo.html')
+    if request.method == 'GET':
+        form = NewTodoForm()
+        return render(request,'new_todo.html', {'form':form})
+    elif request.method == 'POST':
+        form = NewTodoForm(request.POST)
+        if form.is_valid():
+            newTodoItem = form
+            newTodoItem.save()
+            return redirect('all_todos')

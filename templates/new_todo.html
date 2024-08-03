@@ -5,5 +5,10 @@
 
 {% block body %}
 <h1> New to Do</h1>
+<form  method="Post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Add">
+</form>
 {% endblock body %}
 
