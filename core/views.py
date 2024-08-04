@@ -5,6 +5,7 @@ from .forms import NewTodoForm
 from .models import Todo
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 # Create your views here.
 
@@ -20,8 +21,14 @@ class TodoCreateView(CreateView):
 
 class TodoListView(ListView):
     model = Todo
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'all_todoes.html'
     
     def get_queryset(self):
         return Todo.objects.all().order_by('-id')
+    
+    
+class TodoDetailView(DetailView):
+    model = Todo
+    template_name = 'todo_detail.html'
+    

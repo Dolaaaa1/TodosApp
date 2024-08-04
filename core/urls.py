@@ -5,6 +5,7 @@ urlpatterns = [
     path('', index , name='index'),
     path('all/',TodoListView.as_view(), name='all_todes'),
     path('add/',TodoCreateView.as_view() , name='add_todo'),
+    path('todo/<int:pk>/',TodoDetailView.as_view(),name='todo_detail')
     
 
 ]
