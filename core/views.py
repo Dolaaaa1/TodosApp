@@ -1,23 +1,26 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render ,HttpResponse ,redirect
 from .forms import NewTodoForm
 from .models import Todo
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 # Create your views here.
 
 def index(request):
     return render(request,'index.html')
 
-def all_todos(request):
-    all_todo = Todo.objects.all().order_by('-id')
-    return render(request,'all_todoes.html',{'all_todo':all_todo})
 
-def add_todos(request):
-    if request.method == 'GET':
-        form = NewTodoForm()
-        return render(request,'new_todo.html', {'form':form})
-    elif request.method == 'POST':
-        form = NewTodoForm(request.POST)
-        if form.is_valid():
-            newTodoItem = form
-            newTodoItem.save()
-            return redirect('all_todes')
+class TodoCreateView(CreateView):
+    model = Todo
+    fields =['text']
+    template_name = 'new_todo.html'
+    success_url = '/all/'
+
+class TodoListView(ListView):
+    model = Todo
+    template_name = 'all_todoes.html'
+    
+    def get_queryset(self):
+        return Todo.objects.all().order_by('-id')

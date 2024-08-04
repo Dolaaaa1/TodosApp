@@ -3,8 +3,8 @@ from .views import *
 
 urlpatterns = [
     path('', index , name='index'),
-    path('all/', all_todos , name='all_todes'),
-    path('add/', add_todos , name='add_todo'),
+    path('all/',TodoListView.as_view(), name='all_todes'),
+    path('add/',TodoCreateView.as_view() , name='add_todo'),
     
 
 ]
