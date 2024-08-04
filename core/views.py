@@ -20,6 +20,7 @@ class TodoCreateView(CreateView):
 
 class TodoListView(ListView):
     model = Todo
+    paginate_by = 2
     template_name = 'all_todoes.html'
     
     def get_queryset(self):
