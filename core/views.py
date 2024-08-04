@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render ,HttpResponse ,redirect
 from .forms import NewTodoForm
 from .models import Todo
-from django.views.generic.edit import CreateView ,UpdateView
+from django.views.generic.edit import CreateView ,UpdateView , DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
@@ -38,5 +38,11 @@ class TodoUpdate(UpdateView):
     fields = ['text']
     template_name = 'update_todo.html'
     success_url = '/all/'
+    
+class TodoDelete(DeleteView):
+    model = Todo
+    template_name = 'delete_todo.html'
+    success_url = '/all/'
+        
     
     
