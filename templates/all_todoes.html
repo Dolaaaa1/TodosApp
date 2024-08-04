@@ -5,9 +5,9 @@ All To-Dos
 
 
 {% block body %}
-<ul>
+<ul class="list-group">
    {% for todo in object_list %}
-    <li> {{todo.text|slice:50}} <a href="/todo/{{todo.id}}"> View Item </a> </li>
+    <li class="list-group-item" style="background-color:rgba(255,255,255,0.4);"><h3> {{todo.text|slice:50}}  </h3> <a href="/todo/{{todo.id}}"> View Item </a> </li>
    {% endfor %}
 </ul>
 
