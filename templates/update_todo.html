@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
 {% block title %}
  Edit todo
 {% endblock title %}
@@ -7,7 +9,7 @@
 <h1> Edit to Do</h1>
 <form  method="Post">
     {% csrf_token %}
-    {{form}}
+    {% bootstrap_form form %}
     <input class="btn btn-warning" type="submit" value="Edit ">
 </form>
 {% endblock body %}
